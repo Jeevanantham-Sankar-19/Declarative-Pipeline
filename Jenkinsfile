@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Continous Download'){
             steps{
-                git branch: 'main', url: 'https://github.com/Jeevanantham-Sankar-19/spring-petclinic.git'
+                git branch: 'main', url: 'https://github.com/Jeevanantham-Sankar-19/Maven-Tomcat.git'
             }
         }
         stage('Continous Build'){
