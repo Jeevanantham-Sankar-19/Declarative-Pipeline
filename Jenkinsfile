@@ -4,14 +4,15 @@ pipeline {
         stage('Continous Download'){
             steps{
                 script {
-                try{
-                    git branch: 'main', url: 'https://github.com/Jeevanantham-Sankar-19/Maven-Tomcat.git'
+                    try{
+                        git branch: 'main', url: 'https://github.com/Jeevanantham-Sankar-19/Maven-Tomcat.git'
 
-                }
-                catch(Exception e){
-                    echo "Git clone failed: ${e.message}"
-                    currentBuild.result = 'FAILURE'
-                    error("Stopping pipeline due to git clone failure.")
+                    }
+                    catch(Exception e){
+                        echo "Git clone failed: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                        error("Stopping pipeline due to git clone failure.")
+                    }
                 }
             }
         }
