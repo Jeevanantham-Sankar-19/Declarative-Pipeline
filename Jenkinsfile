@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Continous Test'){
             steps{
-                deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'Tomcat-Prod-Server', path: '', url: 'http://http://18.212.83.50:8080')], contextPath: 'petshop/test', war: '**/*.war'
+                deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'Tomcat-Prod-Server', path: '', url: 'http://18.212.83.50:8080')], contextPath: 'petshop/test', war: '**/*.war'
             }
         }
     }
