@@ -32,7 +32,7 @@ pipeline {
             steps{
                 script {
                     try{
-                        deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'Tomcat-Prod-Server', path: '', url: 'http://18.212.83.50:8080')], contextPath: 'petshop/test', war: '**/*.war'
+                        deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'Tomcat-Prod-Server', path: '', url: 'http://54.174.8.189:8080')], contextPath: 'petshop/test', war: '**/*.war'
                     }
                     catch (Exception e){
                         echo "Test failed: ${e.message}"
