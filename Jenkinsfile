@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Continous Download'){
             steps{
+                script {
                 try{
                     git branch: 'main', url: 'https://github.com/Jeevanantham-Sankar-19/Maven-Tomcat.git'
 
