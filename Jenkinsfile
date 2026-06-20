@@ -4,7 +4,7 @@ pipeline {
         stage('Continous Download'){
             steps{
                 try{
-                    git branch: 'main', url: 'https://github.com/Jeevanantham-Sankar-19/spring-framework-petclinic.git'
+                    git branch: 'main', url: 'https://github.com/Jeevanantham-Sankar-19/Maven-Tomcat.git'
 
                 }
                 catch(Exception e){
