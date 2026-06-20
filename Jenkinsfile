@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Continous Download'){
             steps{
-                git branch: 'main', url: 'https://github.com/Jeevanantham-Sankar-19/Maven-Tomcat.git'
+                git branch: 'main', url: 'https://github.com/Jeevanantham-Sankar-19/spring-framework-petclinic.git'
             }
         }
         stage('Continous Build'){
@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Continous Test'){
             steps{
-                deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'Tomcat-Prod-Server', path: '', url: 'http://98.80.74.138:8080')], contextPath: 'petshop/test', war: '**/*.war'
+                deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'Tomcat-Prod-Server', path: '', url: 'http://http://18.212.83.50:8080')], contextPath: 'petshop/test', war: '**/*.war'
             }
         }
     }
