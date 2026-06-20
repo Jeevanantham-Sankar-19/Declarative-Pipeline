@@ -3,17 +3,43 @@ pipeline {
     stages {
         stage('Continous Download'){
             steps{
-                git branch: 'main', url: 'https://github.com/Jeevanantham-Sankar-19/spring-framework-petclinic.git'
+                try{
+                    git branch: 'main', url: 'https://github.com/Jeevanantham-Sankar-19/spring-framework-petclinic.git'
+
+                }
+                catch(Exception e){
+                    echo "Git clone failed: ${e.message}"
+                    currentBuild.result = 'FAILURE'
+                    error("Stopping pipeline due to git clone failure.")
+                }
             }
         }
         stage('Continous Build'){
             steps{
-                sh 'mvn package'
+                script {
+                    try{
+                        sh 'mvn package'
+                    }
+                    catch (Exception e){
+                        echo "Build failed: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                        error("Stopping pipeline due to build failure.")
+                    }
+                }
             }
         }
         stage('Continous Test'){
             steps{
-                deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'Tomcat-Prod-Server', path: '', url: 'http://18.212.83.50:8080')], contextPath: 'petshop/test', war: '**/*.war'
+                script {
+                    try{
+                        deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'Tomcat-Prod-Server', path: '', url: 'http://18.212.83.50:8080')], contextPath: 'petshop/test', war: '**/*.war'
+                    }
+                    catch (Exception e){
+                        echo "Test failed: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                        error("Stopping pipeline due to test failure.")
+                    }
+                }
             }
         }
     }
